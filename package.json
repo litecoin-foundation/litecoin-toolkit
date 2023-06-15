@@ -1,5 +1,5 @@
 {
-  "name": "cryptography-toolkit",
+  "name": "litecoin-toolkit",
   "version": "1.0.0",
   "main": "browserify.js",
   "repository": "git@github.com:litecoin-foundation/litecoin-toolkit.git",

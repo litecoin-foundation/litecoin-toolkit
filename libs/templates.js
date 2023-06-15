@@ -5,7 +5,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "<nav class=\"navbar navbar-inverse navbar-fixed-top\">\n" +
     "  <div class=\"container\">\n" +
     "    <div class=\"navbar-header\">\n" +
-    "      <a href=\"#!/\" class=\"navbar-brand\">Cryptography Toolkit</a>\n" +
+    "      <a href=\"#!/\" class=\"navbar-brand\">Litecoin Toolkit</a>\n" +
     "    </div>\n" +
     "\n" +
     "    <div id=\"navbar\" class=\"collapse navbar-collapse\">\n" +
@@ -2875,7 +2875,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('pages/intro/intro.html',
-    "<h1>Cryptography Toolkit</h1>\n" +
+    "<h1>Litecoin Toolkit</h1>\n" +
     "\n" +
     "A web-based collection of cryptography tools for schemes/algorithms used in\n" +
     "<a href=\"https://github.com/litecoin-project/litecoin\">Litecoin</a> and <a\n" +
