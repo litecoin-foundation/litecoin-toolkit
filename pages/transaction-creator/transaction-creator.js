@@ -1,17 +1,15 @@
-angular
-  .module('app')
-  .component('transactionCreatorPage', {
-    templateUrl: 'pages/transaction-creator/transaction-creator.html',
-    controller: TransactionCreatorPageController,
-    controllerAs: 'vm',
-    bindings: {}
-  });
+angular.module("app").component("transactionCreatorPage", {
+  templateUrl: "pages/transaction-creator/transaction-creator.html",
+  controller: TransactionCreatorPageController,
+  controllerAs: "vm",
+  bindings: {},
+});
 
 function TransactionCreatorPageController(lodash, allNetworks) {
   const vm = this;
 
   vm.networks = allNetworks;
-  vm.network = lodash.find(vm.networks, ['label', 'BTC (Bitcoin Testnet, legacy, BIP32/44)']);
+  vm.network = lodash.find(vm.networks, ["label", "LTC (Litecoin Testnet, legacy, BIP32/44)"]);
   vm.keyPair = {};
   vm.keyValid = false;
   vm.inputTxVout = 0;
@@ -88,7 +86,7 @@ function TransactionCreatorPageController(lodash, allNetworks) {
 
       var tx = txb.build();
       vm.raw = tx.toHex();
-      vm.txId = tx.getHash().reverse().toString('hex');
+      vm.txId = tx.getHash().reverse().toString("hex");
     } catch (e) {
       vm.txError = e;
     }

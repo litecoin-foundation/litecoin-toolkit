@@ -1,24 +1,22 @@
-angular
-  .module('app')
-  .component('eccPage', {
-    templateUrl: 'pages/ecc/ecc.html',
-    controller: EccPageController,
-    controllerAs: 'vm',
-    bindings: {}
-  });
+angular.module("app").component("eccPage", {
+  templateUrl: "pages/ecc/ecc.html",
+  controller: EccPageController,
+  controllerAs: "vm",
+  bindings: {},
+});
 
 function EccPageController(lodash, allNetworks) {
   const vm = this;
   const HASH_TYPE = bitcoin.Transaction.SIGHASH_ALL;
 
   vm.networks = allNetworks;
-  vm.network = lodash.find(vm.networks, ['label', 'BTC (Bitcoin, legacy, BIP32/44)']);
-  vm.message = 'Insert famous quote here!';
-  vm.qrPrivUncompressed = new QRCode('qrPrivUncompressed');
-  vm.qrPrivCompressed = new QRCode('qrPrivCompressed');
-  vm.qrPubkey = new QRCode('qrPubkey');
-  vm.trMerkleRoot = '';
-  vm.trAddress = '';
+  vm.network = lodash.find(vm.networks, ["label", "LTC (Litecoin, legacy, BIP32/44)"]);
+  vm.message = "Insert famous quote here!";
+  vm.qrPrivUncompressed = new QRCode("qrPrivUncompressed");
+  vm.qrPrivCompressed = new QRCode("qrPrivCompressed");
+  vm.qrPubkey = new QRCode("qrPubkey");
+  vm.trMerkleRoot = "";
+  vm.trAddress = "";
 
   vm.$onInit = function () {
     vm.newPrivateKey();
@@ -48,10 +46,10 @@ function EccPageController(lodash, allNetworks) {
     vm.pubKeyDecimal = bitcoin.BigInteger.fromBuffer(vm.pubKey);
     vm.keyPairUncompressed = bitcoin.ECPair.fromPrivateKey(vm.keyPair.privateKey, { compressed: false, network: network });
     vm.keyPairUncompressed.wif = customToWIF(vm.keyPairUncompressed, network);
-    vm.eccMultiplicand = vm.pubKey.toString('hex');
-    vm.eccMultiplier = 'aabbccddeeff00112233445566778899';
+    vm.eccMultiplicand = vm.pubKey.toString("hex");
+    vm.eccMultiplier = "aabbccddeeff00112233445566778899";
     vm.multiplicandPrivKey = false;
-    vm.trInternalKey = vm.keyPair.publicKey.toString('hex');
+    vm.trInternalKey = vm.keyPair.publicKey.toString("hex");
 
     // update QR codes
     vm.qrPrivUncompressed.makeCode(vm.keyPairUncompressed.wif);
@@ -70,7 +68,7 @@ function EccPageController(lodash, allNetworks) {
       vm.eccMultiply();
     } catch (e) {
       try {
-        const privKey = bitcoin.Buffer.from(vm.keyPairUncompressed.wif, 'hex');
+        const privKey = bitcoin.Buffer.from(vm.keyPairUncompressed.wif, "hex");
         vm.keyPair = bitcoin.ECPair.fromPrivateKey(privKey, { compressed: true, network: network });
         vm.formatKeyForNetwork();
         vm.signMessage();
@@ -85,16 +83,16 @@ function EccPageController(lodash, allNetworks) {
 
   vm.signMessage = function () {
     vm.messageHash = bitcoin.crypto.sha256(vm.message);
-    vm.signature = bitcoin.script.signature.encode(vm.keyPair.sign(vm.messageHash), HASH_TYPE).toString('hex');
-    vm.messageHashToVerify = vm.messageHash.toString('hex');
+    vm.signature = bitcoin.script.signature.encode(vm.keyPair.sign(vm.messageHash), HASH_TYPE).toString("hex");
+    vm.messageHashToVerify = vm.messageHash.toString("hex");
     vm.signatureToVerify = vm.signature;
     vm.verifySignature();
   };
 
   vm.verifySignature = function () {
     try {
-      const hash = bitcoin.Buffer.from(vm.messageHashToVerify, 'hex');
-      const signatureWithHashType = bitcoin.script.signature.decode(bitcoin.Buffer.from(vm.signatureToVerify, 'hex'));
+      const hash = bitcoin.Buffer.from(vm.messageHashToVerify, "hex");
+      const signatureWithHashType = bitcoin.script.signature.decode(bitcoin.Buffer.from(vm.signatureToVerify, "hex"));
       vm.signatureValid = vm.keyPair.verify(hash, signatureWithHashType.signature);
     } catch (e) {
       console.error(e);
@@ -103,8 +101,8 @@ function EccPageController(lodash, allNetworks) {
   };
 
   vm.eccMultiply = function () {
-    const a = bitcoin.Buffer.from(vm.eccMultiplicand, 'hex');
-    const b = bitcoin.Buffer.from(vm.eccMultiplier, 'hex');
+    const a = bitcoin.Buffer.from(vm.eccMultiplicand, "hex");
+    const b = bitcoin.Buffer.from(vm.eccMultiplier, "hex");
 
     let resultPoint = null;
     if (vm.multiplicandPrivKey) {
@@ -114,18 +112,18 @@ function EccPageController(lodash, allNetworks) {
       const aPoint = bitcoin.ecurve.Point.decodeFrom(bitcoin.secp256k1, a);
       resultPoint = aPoint.multiply(bitcoin.BigInteger.fromBuffer(b));
     }
-    vm.eccResult = resultPoint.getEncoded(true).toString('hex');
-  }
+    vm.eccResult = resultPoint.getEncoded(true).toString("hex");
+  };
 
   vm.trTweak = function () {
-    const internalKeyBuf = bitcoin.Buffer.from(vm.trInternalKey, 'hex');
-    const internalKey = bitcoin.ecurve.Point.decodeFrom(bitcoin.secp256k1, internalKeyBuf)
+    const internalKeyBuf = bitcoin.Buffer.from(vm.trInternalKey, "hex");
+    const internalKey = bitcoin.ecurve.Point.decodeFrom(bitcoin.secp256k1, internalKeyBuf);
     let merkleRoot = bitcoin.Buffer.alloc(0, 0);
     if (vm.trMerkleRoot !== "") {
-      merkleRoot = bitcoin.Buffer.from(vm.trMerkleRoot, 'hex');
+      merkleRoot = bitcoin.Buffer.from(vm.trMerkleRoot, "hex");
     }
     const taprootPubkey = bitcoin.schnorr.taproot.taprootConstruct(internalKey, merkleRoot);
-    vm.trOutputKey = taprootPubkey.toString('hex');
+    vm.trOutputKey = taprootPubkey.toString("hex");
     const words = bitcoin.bech32.toWords(taprootPubkey);
     words.unshift(1);
     vm.trAddress = bitcoin.bech32m.encode(vm.network.config.bech32, words);

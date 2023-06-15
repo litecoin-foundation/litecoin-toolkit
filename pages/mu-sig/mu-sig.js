@@ -1,11 +1,9 @@
-angular
-  .module('app')
-  .component('muSigPage', {
-    templateUrl: 'pages/mu-sig/mu-sig.html',
-    controller: MuSigPageController,
-    controllerAs: 'vm',
-    bindings: {}
-  });
+angular.module("app").component("muSigPage", {
+  templateUrl: "pages/mu-sig/mu-sig.html",
+  controller: MuSigPageController,
+  controllerAs: "vm",
+  bindings: {},
+});
 
 function MuSigPageController(lodash, bitcoinNetworks) {
   const vm = this;
@@ -13,21 +11,21 @@ function MuSigPageController(lodash, bitcoinNetworks) {
   const muSig = schnorr.muSig;
   const Buffer = bitcoin.Buffer;
   const BigInteger = bitcoin.BigInteger;
-  const network = lodash.find(bitcoinNetworks, ['label', 'BTC (Bitcoin, legacy, BIP32/44)']).config;
+  const network = lodash.find(bitcoinNetworks, ["label", "LTC (Litecoin, legacy, BIP32/44)"]).config;
   const randomBuffer = (len) => Buffer.from(bitcoin.randomBytes(len));
 
   vm.steps = [
-    {label: 'Step 1: Combine public keys', action: 'toStep1'},
-    {label: 'Step 2: Initialize sessions', action: 'toStep2'},
-    {label: 'Step 3: Exchange commitments', action: 'toStep3'},
-    {label: 'Step 4: Get public nonces', action: 'toStep4'},
-    {label: 'Step 5: Combine nonces', action: 'toStep5'},
-    {label: 'Step 6: Generate partial signatures', action: 'toStep6'},
-    {label: 'Step 7: Exchange partial signatures', action: 'toStep7'},
-    {label: 'Step 8: Combine partial signatures', action: 'toStep8'},
-    {label: 'Finished!', action: null},
+    { label: "Step 1: Combine public keys", action: "toStep1" },
+    { label: "Step 2: Initialize sessions", action: "toStep2" },
+    { label: "Step 3: Exchange commitments", action: "toStep3" },
+    { label: "Step 4: Get public nonces", action: "toStep4" },
+    { label: "Step 5: Combine nonces", action: "toStep5" },
+    { label: "Step 6: Generate partial signatures", action: "toStep6" },
+    { label: "Step 7: Exchange partial signatures", action: "toStep7" },
+    { label: "Step 8: Combine partial signatures", action: "toStep8" },
+    { label: "Finished!", action: null },
   ];
-  vm.message = 'Schnorr Signatures are awesome!';
+  vm.message = "Schnorr Signatures are awesome!";
   vm.keyPairs = [];
 
   vm.step = 0;
@@ -41,7 +39,7 @@ function MuSigPageController(lodash, bitcoinNetworks) {
     nonces: [],
     nonceCombined: null,
     partialSignatures: [],
-    signature: null
+    signature: null,
   };
 
   vm.signerPrivateData = [];
@@ -56,7 +54,7 @@ function MuSigPageController(lodash, bitcoinNetworks) {
 
   function bufferToString(val, key) {
     if (Buffer.isBuffer(val)) {
-      return val.toString('hex');
+      return val.toString("hex");
     } else if (BigInteger.isBigInteger(val)) {
       return val.toString(16);
     } else if (lodash.isArray(val)) {
@@ -72,14 +70,14 @@ function MuSigPageController(lodash, bitcoinNetworks) {
 
   vm.newPrivateKey = function () {
     const keyPair = bitcoin.ECPair.makeRandom();
-    keyPair.privateKeyHex = keyPair.privateKey.toString('hex');
-    keyPair.publicKeyHex = bitcoin.tinySecp256k1.pointCompress(keyPair.publicKey).slice(1, 33).toString('hex');
+    keyPair.privateKeyHex = keyPair.privateKey.toString("hex");
+    keyPair.publicKeyHex = bitcoin.tinySecp256k1.pointCompress(keyPair.publicKey).slice(1, 33).toString("hex");
     vm.keyPairs.push(keyPair);
     vm.keyPairsChanged();
   };
 
   vm.updateKeyPair = function (index) {
-    const newPrivKey = bitcoin.Buffer.from(vm.keyPairs[index].privateKeyHex, 'hex');
+    const newPrivKey = bitcoin.Buffer.from(vm.keyPairs[index].privateKeyHex, "hex");
     vm.setPrivateKey(index, newPrivKey);
   };
 
@@ -95,8 +93,8 @@ function MuSigPageController(lodash, bitcoinNetworks) {
 
   vm.setPrivateKey = function (index, newPrivKey) {
     const keyPair = bitcoin.ECPair.fromPrivateKey(newPrivKey, null, { compressed: true, network: network });
-    keyPair.privateKeyHex = newPrivKey.toString('hex');
-    keyPair.publicKeyHex = bitcoin.tinySecp256k1.pointCompress(keyPair.publicKey).slice(1, 33).toString('hex');
+    keyPair.privateKeyHex = newPrivKey.toString("hex");
+    keyPair.publicKeyHex = bitcoin.tinySecp256k1.pointCompress(keyPair.publicKey).slice(1, 33).toString("hex");
     vm.keyPairs[index] = keyPair;
     vm.keyPairsChanged();
   };
@@ -107,13 +105,13 @@ function MuSigPageController(lodash, bitcoinNetworks) {
 
   vm.keyPairsChanged = function () {
     // public data
-    vm.publicData.pubKeys = vm.keyPairs.map(p => p.publicKeyHex);
+    vm.publicData.pubKeys = vm.keyPairs.map((p) => p.publicKeyHex);
 
     // private data
     vm.signerPrivateData = vm.keyPairs.map((p, index) => ({
-      onlyKnownBy: 'Key pair ' + (index + 1),
+      onlyKnownBy: "Key pair " + (index + 1),
       privateKey: BigInteger.fromBuffer(p.privateKey),
-      session: null
+      session: null,
     }));
   };
 
@@ -124,7 +122,7 @@ function MuSigPageController(lodash, bitcoinNetworks) {
   };
 
   vm.toStep1 = function () {
-    const pubKeyBuffers = vm.publicData.pubKeys.map(pk => Buffer.from(pk, 'hex'));
+    const pubKeyBuffers = vm.publicData.pubKeys.map((pk) => Buffer.from(pk, "hex"));
     vm.publicData.pubKeyHash = muSig.computeEll(pubKeyBuffers);
     const pkCombined = muSig.pubKeyCombine(pubKeyBuffers, vm.publicData.pubKeyHash);
     vm.publicData.pubKeyCombined = schnorr.convert.intToBuffer(pkCombined.affineX);
@@ -162,11 +160,11 @@ function MuSigPageController(lodash, bitcoinNetworks) {
 
   vm.toStep5 = function () {
     vm.publicData.nonceCombined = muSig.sessionNonceCombine(vm.signerSession, vm.publicData.nonces);
-    vm.signerPrivateData.forEach(data => (data.session.combinedNonceParity = vm.signerSession.combinedNonceParity));
+    vm.signerPrivateData.forEach((data) => (data.session.combinedNonceParity = vm.signerSession.combinedNonceParity));
   };
 
   vm.toStep6 = function () {
-    vm.signerPrivateData.forEach(data => {
+    vm.signerPrivateData.forEach((data) => {
       data.session.partialSignature = muSig.partialSign(
         data.session,
         vm.publicData.message,
