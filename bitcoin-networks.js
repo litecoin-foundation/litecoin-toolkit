@@ -1,138 +1,152 @@
-window.allNetworks = [{
-  label: 'BTC (Bitcoin Regtest, legacy, BIP32/44)',
-  config: {
-    messagePrefix: '\u0018Bitcoin Signed Message:\n',
-    bech32: 'bcrt',
-    bip32: {public: 0x043587cf, private: 0x04358394},
-    pubKeyHash: 111,
-    scriptHash: 196,
-    wif: 239,
-    bip44: 0x01
-  }
-}, {
-  label: 'BTC (Bitcoin Regtest, SegWit, BIP49)',
-  config: {
-    messagePrefix: '\u0018Bitcoin Signed Message:\n',
-    bech32: 'bcrt',
-    bip32: {public: 0x044a5262, private: 0x044a4e28},
-    pubKeyHash: 111,
-    scriptHash: 196,
-    wif: 239,
-    bip44: 0x01
-  }
-}, {
-  label: 'BTC (Bitcoin Regtest, Native SegWit, BIP84)',
-  config: {
-    messagePrefix: '\u0018Bitcoin Signed Message:\n',
-    bech32: 'bcrt',
-    bip32: {public: 0x045f1cf6, private: 0x045f18bc},
-    pubKeyHash: 111,
-    scriptHash: 196,
-    wif: 239,
-    bip44: 0x01
-  }
-}, {
-  label: 'BTC (Bitcoin Signet, legacy, BIP32/44)',
-  config: {
-    messagePrefix: '\u0018Bitcoin Signed Message:\n',
-    bech32: 'tb',
-    bip32: {public: 0x043587cf, private: 0x04358394},
-    pubKeyHash: 111,
-    scriptHash: 196,
-    wif: 239,
-    bip44: 0x01
-  }
-}, {
-  label: 'BTC (Bitcoin Signet, SegWit, BIP49)',
-  config: {
-    messagePrefix: '\u0018Bitcoin Signed Message:\n',
-    bech32: 'tb',
-    bip32: {public: 0x044a5262, private: 0x044a4e28},
-    pubKeyHash: 111,
-    scriptHash: 196,
-    wif: 239,
-    bip44: 0x01
-  }
-}, {
-  label: 'BTC (Bitcoin Signet, Native SegWit, BIP84)',
-  config: {
-    messagePrefix: '\u0018Bitcoin Signed Message:\n',
-    bech32: 'tb',
-    bip32: {public: 0x045f1cf6, private: 0x045f18bc},
-    pubKeyHash: 111,
-    scriptHash: 196,
-    wif: 239,
-    bip44: 0x01
-  }
-}, {
-  label: 'BTC (Bitcoin Testnet, legacy, BIP32/44)',
-  config: {
-    messagePrefix: '\u0018Bitcoin Signed Message:\n',
-    bech32: 'tb',
-    bip32: {public: 0x043587cf, private: 0x04358394},
-    pubKeyHash: 111,
-    scriptHash: 196,
-    wif: 239,
-    bip44: 0x01
-  }
-}, {
-  label: 'BTC (Bitcoin Testnet, SegWit, BIP49)',
-  config: {
-    messagePrefix: '\u0018Bitcoin Signed Message:\n',
-    bech32: 'tb',
-    bip32: {public: 0x044a5262, private: 0x044a4e28},
-    pubKeyHash: 111,
-    scriptHash: 196,
-    wif: 239,
-    bip44: 0x01
-  }
-}, {
-  label: 'BTC (Bitcoin Testnet, Native SegWit, BIP84)',
-  config: {
-    messagePrefix: '\u0018Bitcoin Signed Message:\n',
-    bech32: 'tb',
-    bip32: {public: 0x045f1cf6, private: 0x045f18bc},
-    pubKeyHash: 111,
-    scriptHash: 196,
-    wif: 239,
-    bip44: 0x01
-  }
-}, {
-  label: 'BTC (Bitcoin, legacy, BIP32/44)',
-  config: {
-    messagePrefix: '\u0018Bitcoin Signed Message:\n',
-    bech32: 'bc',
-    bip32: {public: 0x0488b21e, private: 0x0488ade4},
-    pubKeyHash: 0,
-    scriptHash: 5,
-    wif: 128,
-    bip44: 0x00
-  }
-}, {
-  label: 'BTC (Bitcoin, SegWit, BIP49)',
-  config: {
-    messagePrefix: '\u0018Bitcoin Signed Message:\n',
-    bech32: 'bc',
-    bip32: {public: 0x049d7cb2, private: 0x049d7878},
-    pubKeyHash: 0,
-    scriptHash: 5,
-    wif: 128,
-    bip44: 0x00
-  }
-}, {
-  label: 'BTC (Bitcoin, Native SegWit, BIP84)',
-  config: {
-    messagePrefix: '\u0018Bitcoin Signed Message:\n',
-    bech32: 'bc',
-    bip32: {public: 0x04b24746, private: 0x04b2430c},
-    pubKeyHash: 0,
-    scriptHash: 5,
-    wif: 128,
-    bip44: 0x00
-  }
-}];
+window.allNetworks = [
+  {
+    label: "LTC (Litecoin Regtest, legacy, BIP32/44)",
+    config: {
+      messagePrefix: "\u0019Litecoin Signed Message:\n",
+      bech32: "rltc",
+      bip32: { public: 0x043587cf, private: 0x04358394 },
+      pubKeyHash: 111,
+      scriptHash: 58,
+      wif: 239,
+      bip44: 0x01,
+    },
+  },
+  {
+    label: "LTC (Litecoin Regtest, SegWit, BIP49)",
+    config: {
+      messagePrefix: "\u0019Litecoin Signed Message:\n",
+      bech32: "rltc",
+      bip32: { public: 0x044a5262, private: 0x044a4e28 },
+      pubKeyHash: 111,
+      scriptHash: 58,
+      wif: 239,
+      bip44: 0x01,
+    },
+  },
+  {
+    label: "LTC (Litecoin Regtest, Native SegWit, BIP84)",
+    config: {
+      messagePrefix: "\u0019Litecoin Signed Message:\n",
+      bech32: "rltc",
+      bip32: { public: 0x045f1cf6, private: 0x045f18bc },
+      pubKeyHash: 111,
+      scriptHash: 58,
+      wif: 239,
+      bip44: 0x01,
+    },
+  },
 
-window.bitcoinNetworks = _.filter(allNetworks, n => n.config.bech32 && (n.config.bip44 === 0x00 || n.config.bip44 === 0x01));
+  {
+    label: "LTC (Litecoin Testnet, legacy, BIP32/44)",
+    config: {
+      messagePrefix: "\u0019Litecoin Signed Message:\n",
+      bech32: "tltc",
+      bip32: { public: 0x043587cf, private: 0x04358394 },
+      pubKeyHash: 111,
+      scriptHash: 58,
+      wif: 239,
+      bip44: 0x01,
+    },
+  },
+  {
+    label: "LTC (Litecoin Testnet, SegWit, BIP49)",
+    config: {
+      messagePrefix: "\u0019Litecoin Signed Message:\n",
+      bech32: "tltc",
+      bip32: { public: 0x044a5262, private: 0x044a4e28 },
+      pubKeyHash: 111,
+      scriptHash: 58,
+      wif: 239,
+      bip44: 0x01,
+    },
+  },
+  {
+    label: "LTC (Litecoin Testnet, Native SegWit, BIP84)",
+    config: {
+      messagePrefix: "\u0019Litecoin Signed Message:\n",
+      bech32: "tltc",
+      bip32: { public: 0x045f1cf6, private: 0x045f18bc },
+      pubKeyHash: 111,
+      scriptHash: 58,
+      wif: 239,
+      bip44: 0x01,
+    },
+  },
+  {
+    label: "LTC (Litecoin, legacy, BIP32/44) - SLIP44 NON-STANDARD",
+    config: {
+      messagePrefix: "\u0019Litecoin Signed Message:\n",
+      bech32: "ltc",
+      bip32: { public: 0x019da462, private: 0x019d9cfe },
+      pubKeyHash: 48,
+      scriptHash: 50,
+      wif: 176,
+      bip44: 0x02,
+    },
+  },
+  {
+    label: "LTC (Litecoin, SegWit, BIP49) - SLIP44 NON-STANDARD",
+    config: {
+      messagePrefix: "\u0019Litecoin Signed Message:\n",
+      bech32: "ltc",
+      bip32: { public: 0x01b26ef6, private: 0x01b26792 },
+      pubKeyHash: 48,
+      scriptHash: 50,
+      wif: 176,
+      bip44: 0x02,
+    },
+  },
+  {
+    label: "LTC (Litecoin, Native SegWit, BIP84) - SLIP44 NON-STANDARD",
+    config: {
+      messagePrefix: "\u0019Litecoin Signed Message:\n",
+      bech32: "ltc",
+      bip32: { public: 0x01b26ef6, private: 0x01b26792 },
+      pubKeyHash: 48,
+      scriptHash: 50,
+      wif: 176,
+      bip44: 0x02,
+    },
+  },
+  {
+    label: "LTC (Litecoin, legacy, BIP32/44)",
+    config: {
+      messagePrefix: "\u0019Litecoin Signed Message:\n",
+      bech32: "ltc",
+      bip32: { public: 0x0488b21e, private: 0x0488ade4 },
+      pubKeyHash: 48,
+      scriptHash: 50,
+      wif: 176,
+      bip44: 0x00,
+    },
+  },
+  {
+    label: "LTC (Litecoin, SegWit, BIP49)",
+    config: {
+      messagePrefix: "\u0019Litecoin Signed Message:\n",
+      bech32: "ltc",
+      bip32: { public: 0x049d7cb2, private: 0x049d7878 },
+      pubKeyHash: 48,
+      scriptHash: 50,
+      wif: 176,
+      bip44: 0x00,
+    },
+  },
+  {
+    label: "LTC (Litecoin, Native SegWit, BIP84)",
+    config: {
+      messagePrefix: "\u0019Litecoin Signed Message:\n",
+      bech32: "ltc",
+      bip32: { public: 0x04b24746, private: 0x04b2430c },
+      pubKeyHash: 48,
+      scriptHash: 50,
+      wif: 176,
+      bip44: 0x00,
+    },
+  },
+];
+
+window.bitcoinNetworks = _.filter(allNetworks, (n) => n.config.bech32 && (n.config.bip44 === 0x00 || n.config.bip44 === 0x01));
 
 function customToWIF(keyPair, network) {
   return keyPair.toWIF();

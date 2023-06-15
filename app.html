@@ -12,14 +12,14 @@
 
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button">
-            Bitcoin <span class="caret"></span>
+            Litecoin <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
             <li ng-class="{active: $root.isActive('/hd-wallet')}">
               <a href="#!/hd-wallet">Hierarchical Deterministic Wallet</a>
             </li>
             <li ng-class="{active: $root.isActive('/bitcoin-block')}">
-              <a href="#!/bitcoin-block">Bitcoin Block Parser</a>
+              <a href="#!/bitcoin-block">Litecoin Block Parser</a>
             </li>
             <li ng-class="{active: $root.isActive('/schnorr')}">
               <a href="#!/schnorr">BIP Schnorr Signatures</a>
@@ -64,10 +64,8 @@
     </div>
   </div>
 </nav>
-<a ng-if="$root.isActive('/')"
-   href="https://github.com/guggero/cryptography-toolkit/">
-  <img src="images/fork-me-on-github-ribbon.png" alt="Fork me on GitHub"
-       class="github-ribbon">
+<a ng-if="$root.isActive('/')" href="https://github.com/litecoin-foundation/litecoin-toolkit">
+  <img src="images/fork-me-on-github-ribbon.png" alt="Fork me on GitHub" class="github-ribbon">
 </a>
 <div ng-class="$root.$route.current.containerClass" ng-view>
 

@@ -1,4 +1,4 @@
-<h1>Import HD wallet into Bitcoin Core</h1>
+<h1>Import HD wallet into Litecoin Core</h1>
 
 <div class="panel panel-default">
   <div class="panel-heading">
@@ -8,14 +8,16 @@
   </div>
   <div class="panel-collapse collapse" ng-class="{in: vm.showExplanation}">
     <div class="panel-body">
-      Currently, there is no easy way to import addresses from a HD seed that has been created by another software into Bitcoin Core.<br/>
+      Currently, there is no easy way to import addresses from a HD seed that has been created by another software into
+      Litecoin Core.<br />
       This tool helps you do that.
     </div>
   </div>
 </div>
 
 <div class="alert alert-warning">
-  <strong>Warning</strong>: This is meant as a playground only! You should only use testnet keys and never paste real private keys
+  <strong>Warning</strong>: This is meant as a playground only! You should only use testnet keys and never paste real
+  private keys
   into any web page!
 </div>
 
@@ -27,10 +29,8 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">Import mode:</label>
       <div class="col-sm-9 input-group">
-        <select ng-model="vm.mode"
-                ng-options="mode.label for mode in vm.modes"
-                ng-change="vm.fromSeed()"
-                class="form-control">
+        <select ng-model="vm.mode" ng-options="mode.label for mode in vm.modes" ng-change="vm.fromSeed()"
+          class="form-control">
         </select>
       </div>
     </div>
@@ -48,20 +48,16 @@
     <div class="form-group" ng-if="vm.mode.id === 'mnemonic'">
       <label class="col-sm-3 control-label">Passphrase:</label>
       <div class="col-sm-9 input-group">
-        <input class="form-control"
-               ng-model="vm.passphrase"
-               ng-change="vm.fromMnemonic()"
-               type="{{vm.asPassword ? 'password' : 'text'}}">
+        <input class="form-control" ng-model="vm.passphrase" ng-change="vm.fromMnemonic()"
+          type="{{vm.asPassword ? 'password' : 'text'}}">
         <span class="input-group-btn">
-            <button class="btn btn-primary" ng-click="vm.asPassword = !vm.asPassword">
-                {{vm.asPassword ? 'Show' : 'Hide'}} passphrase
-            </button>
+          <button class="btn btn-primary" ng-click="vm.asPassword = !vm.asPassword">
+            {{vm.asPassword ? 'Show' : 'Hide'}} passphrase
+          </button>
         </span>
         <div class="input-group-addon">Method</div>
-        <select ng-model="vm.strenghtening"
-                ng-change="vm.fromMnemonic()"
-                ng-options="s.label for s in vm.strenghteningMethods"
-                class="form-control">
+        <select ng-model="vm.strenghtening" ng-change="vm.fromMnemonic()"
+          ng-options="s.label for s in vm.strenghteningMethods" class="form-control">
         </select>
       </div>
     </div>
@@ -70,10 +66,8 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">Parameters to derive keys:</label>
       <div class="col-sm-9 input-group">
-        <select ng-model="vm.scheme"
-                ng-options="scheme.label for scheme in vm.schemes"
-                ng-change="vm.fromSeed()"
-                class="form-control">
+        <select ng-model="vm.scheme" ng-options="scheme.label for scheme in vm.schemes" ng-change="vm.fromSeed()"
+          class="form-control">
         </select>
       </div>
     </div>
@@ -82,14 +76,12 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">HD master root key:</label>
       <div class="col-sm-9 input-group as-block">
-        <input class="form-control"
-               style="width: 80%"
-               ng-model="vm.nodeBase58"
-               ng-readonly="vm.mode.id === 'mnemonic'"
-               ng-change="vm.fromBase58()"
-               ng-class="{'well-error': vm.mode.id === 'hdroot' && vm.error}">
-        <span class="input-group-addon" ng-if="vm.mode.id === 'hdroot' && !vm.error" style="width: 20%">&lt;-- paste here to import.</span>
-        <span class="input-group-addon well-error" ng-if="vm.mode.id === 'hdroot' && vm.error" style="width: 20%"> {{vm.error}}</span>
+        <input class="form-control" style="width: 80%" ng-model="vm.nodeBase58" ng-readonly="vm.mode.id === 'mnemonic'"
+          ng-change="vm.fromBase58()" ng-class="{'well-error': vm.mode.id === 'hdroot' && vm.error}">
+        <span class="input-group-addon" ng-if="vm.mode.id === 'hdroot' && !vm.error" style="width: 20%">&lt;-- paste
+          here to import.</span>
+        <span class="input-group-addon well-error" ng-if="vm.mode.id === 'hdroot' && vm.error" style="width: 20%">
+          {{vm.error}}</span>
       </div>
     </div>
 
@@ -131,4 +123,3 @@
     </div>
   </form>
 </div>
-

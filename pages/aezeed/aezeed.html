@@ -9,7 +9,7 @@
   <div class="panel-collapse collapse" ng-class="{in: vm.showExplanation}">
     <div class="panel-body">
       The aezeed Cipher Seed Scheme is a scheme to create versioned seeds for crypto currency wallets, based on
-      <a href="http://web.cs.ucdavis.edu/~rogaway/aez/">aez</a>.<br/><br/>
+      <a href="http://web.cs.ucdavis.edu/~rogaway/aez/">aez</a>.<br /><br />
       This new scheme was first introduced with <a href="https://github.com/lightningnetwork/lnd">lnd</a>, one of the
       implementations of Lightning Network wallet software.
 
@@ -41,17 +41,11 @@
       <label class="col-sm-3 control-label">aezeed parameter:</label>
       <div class="col-sm-9 input-group">
         <div class="input-group-addon">Internal version</div>
-        <input class="form-control"
-               ng-model="vm.version"
-               ng-model-options="{debounce: 1000}"
-               ng-change="vm.generateSeed()"
-               type="number">
-        <div class="input-group-addon">Birthday (days since Bitcoin genesis block)</div>
-        <input class="form-control"
-               ng-model="vm.birthday"
-               ng-model-options="{debounce: 1000}"
-               ng-change="vm.generateSeed()"
-               type="number">
+        <input class="form-control" ng-model="vm.version" ng-model-options="{debounce: 1000}"
+          ng-change="vm.generateSeed()" type="number">
+        <div class="input-group-addon">Birthday (days since Litecoin genesis block)</div>
+        <input class="form-control" ng-model="vm.birthday" ng-model-options="{debounce: 1000}"
+          ng-change="vm.generateSeed()" type="number">
       </div>
     </div>
 
@@ -59,15 +53,12 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">Passphrase:</label>
       <div class="col-sm-9 input-group">
-        <input class="form-control"
-               ng-model="vm.passphrase"
-               ng-model-options="{debounce: 1000}"
-               ng-change="vm.generateSeed()"
-               type="{{vm.asPassword ? 'password' : 'text'}}">
+        <input class="form-control" ng-model="vm.passphrase" ng-model-options="{debounce: 1000}"
+          ng-change="vm.generateSeed()" type="{{vm.asPassword ? 'password' : 'text'}}">
         <span class="input-group-btn">
-            <button class="btn btn-primary" ng-click="vm.asPassword = !vm.asPassword">
-                {{vm.asPassword ? 'Show' : 'Hide'}} passphrase
-            </button>
+          <button class="btn btn-primary" ng-click="vm.asPassword = !vm.asPassword">
+            {{vm.asPassword ? 'Show' : 'Hide'}} passphrase
+          </button>
         </span>
       </div>
     </div>
@@ -76,23 +67,19 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">Entropy and salt (hex):</label>
       <div class="col-sm-9 input-group">
-        <input class="form-control"
-               ng-model="vm.entropy"
-               ng-model-options="{debounce: 1000}"
-               ng-change="vm.generateSeed()">
+        <input class="form-control" ng-model="vm.entropy" ng-model-options="{debounce: 1000}"
+          ng-change="vm.generateSeed()">
         <span class="input-group-btn">
-            <button class="btn btn-primary" ng-click="vm.generateEntropy(); vm.generateSeed();">
-                Randomize entropy
-            </button>
+          <button class="btn btn-primary" ng-click="vm.generateEntropy(); vm.generateSeed();">
+            Randomize entropy
+          </button>
         </span>
-        <input class="form-control"
-               ng-model="vm.salt"
-               ng-model-options="{debounce: 1000}"
-               ng-change="vm.generateSeed()">
+        <input class="form-control" ng-model="vm.salt" ng-model-options="{debounce: 1000}"
+          ng-change="vm.generateSeed()">
         <span class="input-group-btn">
-            <button class="btn btn-primary" ng-click="vm.generateSalt(); vm.generateSeed();">
-                Randomize salt
-            </button>
+          <button class="btn btn-primary" ng-click="vm.generateSalt(); vm.generateSeed();">
+            Randomize salt
+          </button>
         </span>
       </div>
     </div>
@@ -101,10 +88,7 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">Mnemonic:</label>
       <div class="col-sm-9 input-group">
-        <input class="form-control"
-               ng-class="{'well-error': vm.error}"
-               value="{{vm.mnemonic}}"
-               ng-readonly="true">
+        <input class="form-control" ng-class="{'well-error': vm.error}" value="{{vm.mnemonic}}" ng-readonly="true">
         <span class="input-group-addon" ng-if="vm.error" class="well-error"> {{vm.error}}</span>
       </div>
     </div>
@@ -113,15 +97,9 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">HD node root key base58:</label>
       <div class="col-sm-9 input-group as-block">
-        <input class="form-control"
-               style="width: 60%"
-               value="{{vm.nodeBase58}}"
-               ng-readonly="true">
-        <select ng-model="vm.network"
-                style="width: 40%"
-                ng-options="network.label for network in vm.networks"
-                ng-change="vm.formatBase58()"
-                class="form-control">
+        <input class="form-control" style="width: 60%" value="{{vm.nodeBase58}}" ng-readonly="true">
+        <select ng-model="vm.network" style="width: 40%" ng-options="network.label for network in vm.networks"
+          ng-change="vm.formatBase58()" class="form-control">
         </select>
       </div>
     </div>
@@ -137,11 +115,8 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">Mnemonic:</label>
       <div class="col-sm-9 input-group">
-        <input class="form-control"
-               ng-model="vm.mnemonic2"
-               ng-model-options="{debounce: 1000}"
-               ng-class="{'well-error': vm.error2}"
-               ng-change="vm.fromMnemonic()">
+        <input class="form-control" ng-model="vm.mnemonic2" ng-model-options="{debounce: 1000}"
+          ng-class="{'well-error': vm.error2}" ng-change="vm.fromMnemonic()">
         <span class="input-group-addon" ng-if="!vm.error2">&lt;-- paste mnemonic words here to decode</span>
         <span class="input-group-addon well-error" ng-if="vm.error2"> {{vm.error2}}</span>
       </div>
@@ -151,15 +126,12 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">Passphrase:</label>
       <div class="col-sm-9 input-group">
-        <input class="form-control"
-               ng-model="vm.passphrase2"
-               ng-model-options="{debounce: 1000}"
-               ng-change="vm.fromMnemonic()"
-               type="{{vm.asPassword ? 'password' : 'text'}}">
+        <input class="form-control" ng-model="vm.passphrase2" ng-model-options="{debounce: 1000}"
+          ng-change="vm.fromMnemonic()" type="{{vm.asPassword ? 'password' : 'text'}}">
         <span class="input-group-btn">
-            <button class="btn btn-primary" ng-click="vm.asPassword = !vm.asPassword">
-                {{vm.asPassword ? 'Show' : 'Hide'}} passphrase
-            </button>
+          <button class="btn btn-primary" ng-click="vm.asPassword = !vm.asPassword">
+            {{vm.asPassword ? 'Show' : 'Hide'}} passphrase
+          </button>
         </span>
       </div>
     </div>
@@ -169,13 +141,9 @@
       <label class="col-sm-3 control-label">aezeed parameter:</label>
       <div class="col-sm-9 input-group">
         <div class="input-group-addon">Internal version</div>
-        <input class="form-control"
-               value="{{vm.decoded.version}}"
-               ng-readonly="true">
-        <div class="input-group-addon">Birthday (days since Bitcoin genesis block)</div>
-        <input class="form-control"
-               value="{{vm.decoded.birthday}}"
-               ng-readonly="true">
+        <input class="form-control" value="{{vm.decoded.version}}" ng-readonly="true">
+        <div class="input-group-addon">Birthday (days since Litecoin genesis block)</div>
+        <input class="form-control" value="{{vm.decoded.birthday}}" ng-readonly="true">
       </div>
     </div>
 
@@ -185,13 +153,9 @@
       <label class="col-sm-3 control-label"></label>
       <div class="col-sm-9 input-group">
         <div class="input-group-addon">Entropy</div>
-        <input class="form-control"
-               value="{{vm.decoded.entropy}}"
-               ng-readonly="true">
+        <input class="form-control" value="{{vm.decoded.entropy}}" ng-readonly="true">
         <div class="input-group-addon">Salt</div>
-        <input class="form-control"
-               value="{{vm.decoded.salt}}"
-               ng-readonly="true">
+        <input class="form-control" value="{{vm.decoded.salt}}" ng-readonly="true">
       </div>
     </div>
 
@@ -199,15 +163,9 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">HD node root key base58:</label>
       <div class="col-sm-9 input-group as-block">
-        <input class="form-control"
-               style="width: 60%"
-               value="{{vm.decoded.nodeBase58}}"
-               ng-readonly="true">
-        <select ng-model="vm.network2"
-                style="width: 40%"
-                ng-options="network.label for network in vm.networks"
-                ng-change="vm.fromEntropy()"
-                class="form-control">
+        <input class="form-control" style="width: 60%" value="{{vm.decoded.nodeBase58}}" ng-readonly="true">
+        <select ng-model="vm.network2" style="width: 40%" ng-options="network.label for network in vm.networks"
+          ng-change="vm.fromEntropy()" class="form-control">
         </select>
       </div>
     </div>

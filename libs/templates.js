@@ -16,14 +16,14 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "        <li class=\"dropdown\">\n" +
     "          <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\">\n" +
-    "            Bitcoin <span class=\"caret\"></span>\n" +
+    "            Litecoin <span class=\"caret\"></span>\n" +
     "          </a>\n" +
     "          <ul class=\"dropdown-menu\">\n" +
     "            <li ng-class=\"{active: $root.isActive('/hd-wallet')}\">\n" +
     "              <a href=\"#!/hd-wallet\">Hierarchical Deterministic Wallet</a>\n" +
     "            </li>\n" +
     "            <li ng-class=\"{active: $root.isActive('/bitcoin-block')}\">\n" +
-    "              <a href=\"#!/bitcoin-block\">Bitcoin Block Parser</a>\n" +
+    "              <a href=\"#!/bitcoin-block\">Litecoin Block Parser</a>\n" +
     "            </li>\n" +
     "            <li ng-class=\"{active: $root.isActive('/schnorr')}\">\n" +
     "              <a href=\"#!/schnorr\">BIP Schnorr Signatures</a>\n" +
@@ -68,10 +68,8 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    </div>\n" +
     "  </div>\n" +
     "</nav>\n" +
-    "<a ng-if=\"$root.isActive('/')\"\n" +
-    "   href=\"https://github.com/guggero/cryptography-toolkit/\">\n" +
-    "  <img src=\"images/fork-me-on-github-ribbon.png\" alt=\"Fork me on GitHub\"\n" +
-    "       class=\"github-ribbon\">\n" +
+    "<a ng-if=\"$root.isActive('/')\" href=\"https://github.com/litecoin-foundation/litecoin-toolkit\">\n" +
+    "  <img src=\"images/fork-me-on-github-ribbon.png\" alt=\"Fork me on GitHub\" class=\"github-ribbon\">\n" +
     "</a>\n" +
     "<div ng-class=\"$root.$route.current.containerClass\" ng-view>\n" +
     "\n" +
@@ -81,6 +79,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('index.html',
     "<html>\n" +
+    "\n" +
     "<head>\n" +
     "  <meta charset=\"UTF-8\">\n" +
     "  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" +
@@ -89,7 +88,8 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "  <!-- fonts -->\n" +
     "  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Raleway:300,400,700\">\n" +
-    "  <link rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.8.1/css/all.css\" integrity=\"sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf\" crossorigin=\"anonymous\">\n" +
+    "  <link rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.8.1/css/all.css\"\n" +
+    "    integrity=\"sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf\" crossorigin=\"anonymous\">\n" +
     "\n" +
     "  <!-- bootstrap and theme -->\n" +
     "  <link rel=\"stylesheet\" href=\"libs/css/bootstrap.min.css\">\n" +
@@ -152,11 +152,13 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "  <script src=\"pages/macaroon/macaroon.js\"></script>\n" +
     "  <script src=\"pages/wallet-import/wallet-import.js\"></script>\n" +
     "\n" +
-    "  <title>Cryptography Toolkit</title>\n" +
+    "  <title>Litecoin Toolkit</title>\n" +
     "</head>\n" +
+    "\n" +
     "<body>\n" +
-    "<app></app>\n" +
+    "  <app></app>\n" +
     "</body>\n" +
+    "\n" +
     "</html>\n"
   );
 
@@ -1835,7 +1837,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "  <div class=\"panel-collapse collapse\" ng-class=\"{in: vm.showExplanation}\">\n" +
     "    <div class=\"panel-body\">\n" +
     "      The aezeed Cipher Seed Scheme is a scheme to create versioned seeds for crypto currency wallets, based on\n" +
-    "      <a href=\"http://web.cs.ucdavis.edu/~rogaway/aez/\">aez</a>.<br/><br/>\n" +
+    "      <a href=\"http://web.cs.ucdavis.edu/~rogaway/aez/\">aez</a>.<br /><br />\n" +
     "      This new scheme was first introduced with <a href=\"https://github.com/lightningnetwork/lnd\">lnd</a>, one of the\n" +
     "      implementations of Lightning Network wallet software.\n" +
     "\n" +
@@ -1867,17 +1869,11 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "      <label class=\"col-sm-3 control-label\">aezeed parameter:</label>\n" +
     "      <div class=\"col-sm-9 input-group\">\n" +
     "        <div class=\"input-group-addon\">Internal version</div>\n" +
-    "        <input class=\"form-control\"\n" +
-    "               ng-model=\"vm.version\"\n" +
-    "               ng-model-options=\"{debounce: 1000}\"\n" +
-    "               ng-change=\"vm.generateSeed()\"\n" +
-    "               type=\"number\">\n" +
-    "        <div class=\"input-group-addon\">Birthday (days since Bitcoin genesis block)</div>\n" +
-    "        <input class=\"form-control\"\n" +
-    "               ng-model=\"vm.birthday\"\n" +
-    "               ng-model-options=\"{debounce: 1000}\"\n" +
-    "               ng-change=\"vm.generateSeed()\"\n" +
-    "               type=\"number\">\n" +
+    "        <input class=\"form-control\" ng-model=\"vm.version\" ng-model-options=\"{debounce: 1000}\"\n" +
+    "          ng-change=\"vm.generateSeed()\" type=\"number\">\n" +
+    "        <div class=\"input-group-addon\">Birthday (days since Litecoin genesis block)</div>\n" +
+    "        <input class=\"form-control\" ng-model=\"vm.birthday\" ng-model-options=\"{debounce: 1000}\"\n" +
+    "          ng-change=\"vm.generateSeed()\" type=\"number\">\n" +
     "      </div>\n" +
     "    </div>\n" +
     "\n" +
@@ -1885,15 +1881,12 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <div class=\"form-group\">\n" +
     "      <label class=\"col-sm-3 control-label\">Passphrase:</label>\n" +
     "      <div class=\"col-sm-9 input-group\">\n" +
-    "        <input class=\"form-control\"\n" +
-    "               ng-model=\"vm.passphrase\"\n" +
-    "               ng-model-options=\"{debounce: 1000}\"\n" +
-    "               ng-change=\"vm.generateSeed()\"\n" +
-    "               type=\"{{vm.asPassword ? 'password' : 'text'}}\">\n" +
+    "        <input class=\"form-control\" ng-model=\"vm.passphrase\" ng-model-options=\"{debounce: 1000}\"\n" +
+    "          ng-change=\"vm.generateSeed()\" type=\"{{vm.asPassword ? 'password' : 'text'}}\">\n" +
     "        <span class=\"input-group-btn\">\n" +
-    "            <button class=\"btn btn-primary\" ng-click=\"vm.asPassword = !vm.asPassword\">\n" +
-    "                {{vm.asPassword ? 'Show' : 'Hide'}} passphrase\n" +
-    "            </button>\n" +
+    "          <button class=\"btn btn-primary\" ng-click=\"vm.asPassword = !vm.asPassword\">\n" +
+    "            {{vm.asPassword ? 'Show' : 'Hide'}} passphrase\n" +
+    "          </button>\n" +
     "        </span>\n" +
     "      </div>\n" +
     "    </div>\n" +
@@ -1902,23 +1895,19 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <div class=\"form-group\">\n" +
     "      <label class=\"col-sm-3 control-label\">Entropy and salt (hex):</label>\n" +
     "      <div class=\"col-sm-9 input-group\">\n" +
-    "        <input class=\"form-control\"\n" +
-    "               ng-model=\"vm.entropy\"\n" +
-    "               ng-model-options=\"{debounce: 1000}\"\n" +
-    "               ng-change=\"vm.generateSeed()\">\n" +
+    "        <input class=\"form-control\" ng-model=\"vm.entropy\" ng-model-options=\"{debounce: 1000}\"\n" +
+    "          ng-change=\"vm.generateSeed()\">\n" +
     "        <span class=\"input-group-btn\">\n" +
-    "            <button class=\"btn btn-primary\" ng-click=\"vm.generateEntropy(); vm.generateSeed();\">\n" +
-    "                Randomize entropy\n" +
-    "            </button>\n" +
+    "          <button class=\"btn btn-primary\" ng-click=\"vm.generateEntropy(); vm.generateSeed();\">\n" +
+    "            Randomize entropy\n" +
+    "          </button>\n" +
     "        </span>\n" +
-    "        <input class=\"form-control\"\n" +
-    "               ng-model=\"vm.salt\"\n" +
-    "               ng-model-options=\"{debounce: 1000}\"\n" +
-    "               ng-change=\"vm.generateSeed()\">\n" +
+    "        <input class=\"form-control\" ng-model=\"vm.salt\" ng-model-options=\"{debounce: 1000}\"\n" +
+    "          ng-change=\"vm.generateSeed()\">\n" +
     "        <span class=\"input-group-btn\">\n" +
-    "            <button class=\"btn btn-primary\" ng-click=\"vm.generateSalt(); vm.generateSeed();\">\n" +
-    "                Randomize salt\n" +
-    "            </button>\n" +
+    "          <button class=\"btn btn-primary\" ng-click=\"vm.generateSalt(); vm.generateSeed();\">\n" +
+    "            Randomize salt\n" +
+    "          </button>\n" +
     "        </span>\n" +
     "      </div>\n" +
     "    </div>\n" +
@@ -1927,10 +1916,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <div class=\"form-group\">\n" +
     "      <label class=\"col-sm-3 control-label\">Mnemonic:</label>\n" +
     "      <div class=\"col-sm-9 input-group\">\n" +
-    "        <input class=\"form-control\"\n" +
-    "               ng-class=\"{'well-error': vm.error}\"\n" +
-    "               value=\"{{vm.mnemonic}}\"\n" +
-    "               ng-readonly=\"true\">\n" +
+    "        <input class=\"form-control\" ng-class=\"{'well-error': vm.error}\" value=\"{{vm.mnemonic}}\" ng-readonly=\"true\">\n" +
     "        <span class=\"input-group-addon\" ng-if=\"vm.error\" class=\"well-error\"> {{vm.error}}</span>\n" +
     "      </div>\n" +
     "    </div>\n" +
@@ -1939,15 +1925,9 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <div class=\"form-group\">\n" +
     "      <label class=\"col-sm-3 control-label\">HD node root key base58:</label>\n" +
     "      <div class=\"col-sm-9 input-group as-block\">\n" +
-    "        <input class=\"form-control\"\n" +
-    "               style=\"width: 60%\"\n" +
-    "               value=\"{{vm.nodeBase58}}\"\n" +
-    "               ng-readonly=\"true\">\n" +
-    "        <select ng-model=\"vm.network\"\n" +
-    "                style=\"width: 40%\"\n" +
-    "                ng-options=\"network.label for network in vm.networks\"\n" +
-    "                ng-change=\"vm.formatBase58()\"\n" +
-    "                class=\"form-control\">\n" +
+    "        <input class=\"form-control\" style=\"width: 60%\" value=\"{{vm.nodeBase58}}\" ng-readonly=\"true\">\n" +
+    "        <select ng-model=\"vm.network\" style=\"width: 40%\" ng-options=\"network.label for network in vm.networks\"\n" +
+    "          ng-change=\"vm.formatBase58()\" class=\"form-control\">\n" +
     "        </select>\n" +
     "      </div>\n" +
     "    </div>\n" +
@@ -1963,11 +1943,8 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <div class=\"form-group\">\n" +
     "      <label class=\"col-sm-3 control-label\">Mnemonic:</label>\n" +
     "      <div class=\"col-sm-9 input-group\">\n" +
-    "        <input class=\"form-control\"\n" +
-    "               ng-model=\"vm.mnemonic2\"\n" +
-    "               ng-model-options=\"{debounce: 1000}\"\n" +
-    "               ng-class=\"{'well-error': vm.error2}\"\n" +
-    "               ng-change=\"vm.fromMnemonic()\">\n" +
+    "        <input class=\"form-control\" ng-model=\"vm.mnemonic2\" ng-model-options=\"{debounce: 1000}\"\n" +
+    "          ng-class=\"{'well-error': vm.error2}\" ng-change=\"vm.fromMnemonic()\">\n" +
     "        <span class=\"input-group-addon\" ng-if=\"!vm.error2\">&lt;-- paste mnemonic words here to decode</span>\n" +
     "        <span class=\"input-group-addon well-error\" ng-if=\"vm.error2\"> {{vm.error2}}</span>\n" +
     "      </div>\n" +
@@ -1977,15 +1954,12 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <div class=\"form-group\">\n" +
     "      <label class=\"col-sm-3 control-label\">Passphrase:</label>\n" +
     "      <div class=\"col-sm-9 input-group\">\n" +
-    "        <input class=\"form-control\"\n" +
-    "               ng-model=\"vm.passphrase2\"\n" +
-    "               ng-model-options=\"{debounce: 1000}\"\n" +
-    "               ng-change=\"vm.fromMnemonic()\"\n" +
-    "               type=\"{{vm.asPassword ? 'password' : 'text'}}\">\n" +
+    "        <input class=\"form-control\" ng-model=\"vm.passphrase2\" ng-model-options=\"{debounce: 1000}\"\n" +
+    "          ng-change=\"vm.fromMnemonic()\" type=\"{{vm.asPassword ? 'password' : 'text'}}\">\n" +
     "        <span class=\"input-group-btn\">\n" +
-    "            <button class=\"btn btn-primary\" ng-click=\"vm.asPassword = !vm.asPassword\">\n" +
-    "                {{vm.asPassword ? 'Show' : 'Hide'}} passphrase\n" +
-    "            </button>\n" +
+    "          <button class=\"btn btn-primary\" ng-click=\"vm.asPassword = !vm.asPassword\">\n" +
+    "            {{vm.asPassword ? 'Show' : 'Hide'}} passphrase\n" +
+    "          </button>\n" +
     "        </span>\n" +
     "      </div>\n" +
     "    </div>\n" +
@@ -1995,13 +1969,9 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "      <label class=\"col-sm-3 control-label\">aezeed parameter:</label>\n" +
     "      <div class=\"col-sm-9 input-group\">\n" +
     "        <div class=\"input-group-addon\">Internal version</div>\n" +
-    "        <input class=\"form-control\"\n" +
-    "               value=\"{{vm.decoded.version}}\"\n" +
-    "               ng-readonly=\"true\">\n" +
-    "        <div class=\"input-group-addon\">Birthday (days since Bitcoin genesis block)</div>\n" +
-    "        <input class=\"form-control\"\n" +
-    "               value=\"{{vm.decoded.birthday}}\"\n" +
-    "               ng-readonly=\"true\">\n" +
+    "        <input class=\"form-control\" value=\"{{vm.decoded.version}}\" ng-readonly=\"true\">\n" +
+    "        <div class=\"input-group-addon\">Birthday (days since Litecoin genesis block)</div>\n" +
+    "        <input class=\"form-control\" value=\"{{vm.decoded.birthday}}\" ng-readonly=\"true\">\n" +
     "      </div>\n" +
     "    </div>\n" +
     "\n" +
@@ -2011,13 +1981,9 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "      <label class=\"col-sm-3 control-label\"></label>\n" +
     "      <div class=\"col-sm-9 input-group\">\n" +
     "        <div class=\"input-group-addon\">Entropy</div>\n" +
-    "        <input class=\"form-control\"\n" +
-    "               value=\"{{vm.decoded.entropy}}\"\n" +
-    "               ng-readonly=\"true\">\n" +
+    "        <input class=\"form-control\" value=\"{{vm.decoded.entropy}}\" ng-readonly=\"true\">\n" +
     "        <div class=\"input-group-addon\">Salt</div>\n" +
-    "        <input class=\"form-control\"\n" +
-    "               value=\"{{vm.decoded.salt}}\"\n" +
-    "               ng-readonly=\"true\">\n" +
+    "        <input class=\"form-control\" value=\"{{vm.decoded.salt}}\" ng-readonly=\"true\">\n" +
     "      </div>\n" +
     "    </div>\n" +
     "\n" +
@@ -2025,15 +1991,9 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <div class=\"form-group\">\n" +
     "      <label class=\"col-sm-3 control-label\">HD node root key base58:</label>\n" +
     "      <div class=\"col-sm-9 input-group as-block\">\n" +
-    "        <input class=\"form-control\"\n" +
-    "               style=\"width: 60%\"\n" +
-    "               value=\"{{vm.decoded.nodeBase58}}\"\n" +
-    "               ng-readonly=\"true\">\n" +
-    "        <select ng-model=\"vm.network2\"\n" +
-    "                style=\"width: 40%\"\n" +
-    "                ng-options=\"network.label for network in vm.networks\"\n" +
-    "                ng-change=\"vm.fromEntropy()\"\n" +
-    "                class=\"form-control\">\n" +
+    "        <input class=\"form-control\" style=\"width: 60%\" value=\"{{vm.decoded.nodeBase58}}\" ng-readonly=\"true\">\n" +
+    "        <select ng-model=\"vm.network2\" style=\"width: 40%\" ng-options=\"network.label for network in vm.networks\"\n" +
+    "          ng-change=\"vm.fromEntropy()\" class=\"form-control\">\n" +
     "        </select>\n" +
     "      </div>\n" +
     "    </div>\n" +
@@ -2044,227 +2004,221 @@ angular.module('app').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('pages/bitcoin-block/bitcoin-block.html',
-    "<h1>Bitcoin Block Parser</h1>\n" +
+    "<h1>Litecoin Block Parser</h1>\n" +
     "\n" +
     "<div class=\"panel panel-default\">\n" +
-    "    <div class=\"panel-heading\">\n" +
-    "        <h4 class=\"panel-title\">\n" +
-    "            <a ng-click=\"vm.showExplanation = !vm.showExplanation\">Explanation</a>\n" +
-    "        </h4>\n" +
-    "    </div>\n" +
-    "    <div class=\"panel-collapse collapse\" ng-class=\"{in: vm.showExplanation}\">\n" +
-    "        <div class=\"panel-body\">\n" +
-    "            Parse and examine a block from Bitcoin's network or by pasting the binary content\n" +
-    "            as a hex string.\n" +
+    "  <div class=\"panel-heading\">\n" +
+    "    <h4 class=\"panel-title\">\n" +
+    "      <a ng-click=\"vm.showExplanation = !vm.showExplanation\">Explanation</a>\n" +
+    "    </h4>\n" +
+    "  </div>\n" +
+    "  <div class=\"panel-collapse collapse\" ng-class=\"{in: vm.showExplanation}\">\n" +
+    "    <div class=\"panel-body\">\n" +
+    "      Parse and examine a block from Litecoin's network or by pasting the binary content\n" +
+    "      as a hex string.\n" +
     "\n" +
-    "            <h3>Sources, tools and other useful information:</h3>\n" +
-    "            <ul>\n" +
-    "                <li><a href=\"https://blockexplorer.com/api-ref\">Blockchain Explorer API reference</a></li>\n" +
-    "                <li><a href=\"https://bitcoinjs.org/\">BitcoinJS</a></li>\n" +
-    "                <li><a href=\"https://github.com/bitcoinjs/bitcoinjs-lib\">BitcoinJS GitHub repo</a></li>\n" +
-    "            </ul>\n" +
-    "        </div>\n" +
+    "      <h3>Sources, tools and other useful information:</h3>\n" +
+    "      <ul>\n" +
+    "        <li><a href=\"https://blockexplorer.com/api-ref\">Blockchain Explorer API reference</a></li>\n" +
+    "        <li><a href=\"https://bitcoinjs.org/\">BitcoinJS</a></li>\n" +
+    "        <li><a href=\"https://github.com/bitcoinjs/bitcoinjs-lib\">BitcoinJS GitHub repo</a></li>\n" +
+    "      </ul>\n" +
     "    </div>\n" +
+    "  </div>\n" +
     "</div>\n" +
     "\n" +
     "<h4>Block data</h4>\n" +
     "<div class=\"well\">\n" +
-    "    <form class=\"form-horizontal\">\n" +
-    "        <div class=\"form-group\">\n" +
-    "            <label class=\"col-sm-4 control-label\">Block source API URL:</label>\n" +
-    "            <div class=\"col-sm-8 input-group\">\n" +
-    "                <select ng-model=\"vm.selectedBlockSource\"\n" +
-    "                        ng-change=\"vm.downloadBlock()\"\n" +
-    "                        ng-options=\"source.label for source in vm.sources\"\n" +
-    "                        class=\"form-control\">\n" +
-    "                </select>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "        <div class=\"form-group\">\n" +
-    "            <label class=\"col-sm-4 control-label\" for=\"hash\">Hash of block to examine:</label>\n" +
-    "            <div class=\"col-sm-8 input-group\">\n" +
-    "                <input id=\"hash\"\n" +
-    "                       class=\"form-control\"\n" +
-    "                       ng-model=\"vm.hash\"\n" +
-    "                       ng-change=\"vm.downloadBlock()\"\n" +
-    "                       ng-class=\"{'well-error': vm.error}\">\n" +
-    "                <span class=\"input-group-addon\" ng-if=\"!vm.error\">&lt;-- paste here to examine</span>\n" +
-    "                <span class=\"input-group-addon well-error\" ng-if=\"vm.error\"> {{vm.error}}</span>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "        <div class=\"form-group\">\n" +
-    "            <div class=\"col-sm-8 col-sm-offset-4\">\n" +
-    "                Load other examples (might take a while to load/render!):\n" +
-    "                <ul>\n" +
-    "                    <li>\n" +
-    "                        <a ng-click=\"vm.hash = '000000000000000003d79e6973863cdb24ac6f3ddd526f61a8ff4fb684db1e9f'; vm.downloadBlock();\">\n" +
-    "                            Block #371667, 51 transactions\n" +
-    "                        </a>\n" +
-    "                    </li>\n" +
-    "                    <li>\n" +
-    "                        <a ng-click=\"vm.hash = '000000000000000006a62f827dd0a2caba98c178bebb175ec1fcd250e1a0159c'; vm.downloadBlock();\">\n" +
-    "                            Block #371610, 168 transactions\n" +
-    "                        </a>\n" +
-    "                    </li>\n" +
-    "                    <li>\n" +
-    "                        <a ng-click=\"vm.hash = '0000000000000000009a2160814712117b1f07db54887dbbb5de02173d398db3'; vm.downloadBlock();\">\n" +
-    "                            Block #496321, 300 transactions, SegWit\n" +
-    "                        </a>\n" +
-    "                    </li>\n" +
-    "                </ul>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
+    "  <form class=\"form-horizontal\">\n" +
+    "    <div class=\"form-group\">\n" +
+    "      <label class=\"col-sm-4 control-label\">Block source API URL:</label>\n" +
+    "      <div class=\"col-sm-8 input-group\">\n" +
+    "        <select ng-model=\"vm.selectedBlockSource\" ng-change=\"vm.downloadBlock()\"\n" +
+    "          ng-options=\"source.label for source in vm.sources\" class=\"form-control\">\n" +
+    "        </select>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "    <div class=\"form-group\">\n" +
+    "      <label class=\"col-sm-4 control-label\" for=\"hash\">Hash of block to examine:</label>\n" +
+    "      <div class=\"col-sm-8 input-group\">\n" +
+    "        <input id=\"hash\" class=\"form-control\" ng-model=\"vm.hash\" ng-change=\"vm.downloadBlock()\"\n" +
+    "          ng-class=\"{'well-error': vm.error}\">\n" +
+    "        <span class=\"input-group-addon\" ng-if=\"!vm.error\">&lt;-- paste here to examine</span>\n" +
+    "        <span class=\"input-group-addon well-error\" ng-if=\"vm.error\"> {{vm.error}}</span>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "    <div class=\"form-group\">\n" +
+    "      <div class=\"col-sm-8 col-sm-offset-4\">\n" +
+    "        Load other examples (might take a while to load/render!):\n" +
+    "        <ul>\n" +
+    "          <li>\n" +
+    "            <a\n" +
+    "              ng-click=\"vm.hash = '000000000000000003d79e6973863cdb24ac6f3ddd526f61a8ff4fb684db1e9f'; vm.downloadBlock();\">\n" +
+    "              Block #371667, 51 transactions\n" +
+    "            </a>\n" +
+    "          </li>\n" +
+    "          <li>\n" +
+    "            <a\n" +
+    "              ng-click=\"vm.hash = '000000000000000006a62f827dd0a2caba98c178bebb175ec1fcd250e1a0159c'; vm.downloadBlock();\">\n" +
+    "              Block #371610, 168 transactions\n" +
+    "            </a>\n" +
+    "          </li>\n" +
+    "          <li>\n" +
+    "            <a\n" +
+    "              ng-click=\"vm.hash = '0000000000000000009a2160814712117b1f07db54887dbbb5de02173d398db3'; vm.downloadBlock();\">\n" +
+    "              Block #496321, 300 transactions, SegWit\n" +
+    "            </a>\n" +
+    "          </li>\n" +
+    "        </ul>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
     "\n" +
-    "        <div class=\"form-group\">\n" +
-    "            <label class=\"col-sm-4 control-label\" for=\"raw\">Raw hex value:</label>\n" +
-    "            <div class=\"col-sm-8 input-group\">\n" +
-    "        <textarea id=\"raw\"\n" +
-    "                  rows=\"10\"\n" +
-    "                  ng-model=\"vm.raw\"\n" +
-    "                  ng-trim=\"false\"\n" +
-    "                  ng-change=\"vm.parseBlock()\"\n" +
-    "                  class=\"form-control\"\n" +
-    "                  ng-class=\"{'well-error': vm.error}\">\n" +
+    "    <div class=\"form-group\">\n" +
+    "      <label class=\"col-sm-4 control-label\" for=\"raw\">Raw hex value:</label>\n" +
+    "      <div class=\"col-sm-8 input-group\">\n" +
+    "        <textarea id=\"raw\" rows=\"10\" ng-model=\"vm.raw\" ng-trim=\"false\" ng-change=\"vm.parseBlock()\" class=\"form-control\"\n" +
+    "          ng-class=\"{'well-error': vm.error}\">\n" +
     "          </textarea>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
     "\n" +
-    "        <div class=\"form-group\">\n" +
-    "            <label class=\"col-sm-4 control-label\" for=\"json\">\n" +
-    "                <a ng-click=\"vm.showDecoded = !vm.showDecoded\">Decoded as JSON:</a>\n" +
-    "            </label>\n" +
-    "            <div class=\"col-sm-8 input-group\" ng-if=\"vm.showDecoded\">\n" +
-    "                <textarea id=\"json\" rows=\"20\" ng-readonly=\"true\" class=\"form-control\">{{vm.decodedBlock | json}}</textarea>\n" +
-    "            </div>\n" +
-    "            <div class=\"col-sm-8 input-group\" ng-if=\"!vm.showDecoded\">\n" +
-    "                <textarea id=\"json\" rows=\"1\" ng-readonly=\"true\"\n" +
-    "                          class=\"form-control\">(hidden for performance reasons, click the link to show)</textarea>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
+    "    <div class=\"form-group\">\n" +
+    "      <label class=\"col-sm-4 control-label\" for=\"json\">\n" +
+    "        <a ng-click=\"vm.showDecoded = !vm.showDecoded\">Decoded as JSON:</a>\n" +
+    "      </label>\n" +
+    "      <div class=\"col-sm-8 input-group\" ng-if=\"vm.showDecoded\">\n" +
+    "        <textarea id=\"json\" rows=\"20\" ng-readonly=\"true\" class=\"form-control\">{{vm.decodedBlock | json}}</textarea>\n" +
+    "      </div>\n" +
+    "      <div class=\"col-sm-8 input-group\" ng-if=\"!vm.showDecoded\">\n" +
+    "        <textarea id=\"json\" rows=\"1\" ng-readonly=\"true\"\n" +
+    "          class=\"form-control\">(hidden for performance reasons, click the link to show)</textarea>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
     "\n" +
-    "        <div class=\"form-group\">\n" +
-    "            <label class=\"col-sm-4 control-label\" for=\"json\">Block size as seen by pre-SegWit nodes:</label>\n" +
-    "            <div class=\"col-sm-8 input-group\">\n" +
-    "                <input ng-readonly=\"true\" value=\"{{vm.block.legacySize}}\" class=\"form-control\">\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "        <div class=\"form-group\">\n" +
-    "            <label class=\"col-sm-4 control-label\" for=\"json\">Real block size with SegWit:</label>\n" +
-    "            <div class=\"col-sm-8 input-group\">\n" +
-    "                <input ng-readonly=\"true\" value=\"{{vm.block.byteLength()}}\" class=\"form-control\">\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "        <div class=\"form-group\">\n" +
-    "            <label class=\"col-sm-4 control-label\" for=\"json\">Block weight:</label>\n" +
-    "            <div class=\"col-sm-8 input-group\">\n" +
-    "                <input ng-readonly=\"true\" value=\"{{vm.block.weight}}\" class=\"form-control\">\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "    </form>\n" +
+    "    <div class=\"form-group\">\n" +
+    "      <label class=\"col-sm-4 control-label\" for=\"json\">Block size as seen by pre-SegWit nodes:</label>\n" +
+    "      <div class=\"col-sm-8 input-group\">\n" +
+    "        <input ng-readonly=\"true\" value=\"{{vm.block.legacySize}}\" class=\"form-control\">\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "    <div class=\"form-group\">\n" +
+    "      <label class=\"col-sm-4 control-label\" for=\"json\">Real block size with SegWit:</label>\n" +
+    "      <div class=\"col-sm-8 input-group\">\n" +
+    "        <input ng-readonly=\"true\" value=\"{{vm.block.byteLength()}}\" class=\"form-control\">\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "    <div class=\"form-group\">\n" +
+    "      <label class=\"col-sm-4 control-label\" for=\"json\">Block weight:</label>\n" +
+    "      <div class=\"col-sm-8 input-group\">\n" +
+    "        <input ng-readonly=\"true\" value=\"{{vm.block.weight}}\" class=\"form-control\">\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "  </form>\n" +
     "</div>\n" +
     "\n" +
     "<div ng-show=\"!vm.error && vm.decodedBlock && vm.decodedBlock.transactions.length > 0\">\n" +
-    "    <h4>Merkle Tree</h4>\n" +
-    "    <div id=\"merkleTree\" class=\"row row-horizon\" ng-show=\"vm.decodedBlock.transactions.length <= 200\"></div>\n" +
-    "    <div class=\"tooltip\" id=\"tooltip\"></div>\n" +
-    "    <span ng-if=\"vm.decodedBlock.transactions.length > 200\">\n" +
+    "  <h4>Merkle Tree</h4>\n" +
+    "  <div id=\"merkleTree\" class=\"row row-horizon\" ng-show=\"vm.decodedBlock.transactions.length <= 200\"></div>\n" +
+    "  <div class=\"tooltip\" id=\"tooltip\"></div>\n" +
+    "  <span ng-if=\"vm.decodedBlock.transactions.length > 200\">\n" +
     "    Only shown up to 200 transactions due to performance reasons\n" +
     "  </span>\n" +
     "</div>\n" +
     "\n" +
     "<div ng-if=\"!vm.error && vm.decodedBlock && vm.decodedBlock.transactions.length > 0\">\n" +
-    "    <div ng-repeat=\"tx in vm.decodedBlock.transactions\">\n" +
-    "        <h4 ng-init=\"origTx = vm.block.transactions[$index]\">TX {{$index}}</h4>\n" +
-    "        <div class=\"well\">\n" +
-    "            <form class=\"form-horizontal\">\n" +
-    "                <!-- hash -->\n" +
-    "                <div class=\"form-group\">\n" +
-    "                    <label class=\"col-sm-3 control-label\" for=\"raw\">Calculated Hash:</label>\n" +
-    "                    <div class=\"col-sm-9 input-group\">\n" +
-    "                        <input ng-readonly=\"true\" value=\"{{::origTx.getHash().toString('hex')}}\" class=\"form-control\">\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "\n" +
-    "                <!-- ID -->\n" +
-    "                <div class=\"form-group\">\n" +
-    "                    <label class=\"col-sm-3 control-label\" for=\"raw\">TX ID (reversed hash):</label>\n" +
-    "                    <div class=\"col-sm-9 input-group\">\n" +
-    "                        <input ng-readonly=\"true\" value=\"{{::origTx.getId().toString('hex')}}\" class=\"form-control\">\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "\n" +
-    "                <!-- misc -->\n" +
-    "                <div class=\"form-group\">\n" +
-    "                    <label class=\"col-sm-3 control-label\" for=\"raw\">Misc:</label>\n" +
-    "                    <div class=\"col-sm-9 input-group\">\n" +
-    "            <span class=\"form-control\" ng-readonly=\"true\">\n" +
-    "                Version: {{::tx.version}}, Locktime: {{::tx.locktime}}, is coinbase TX: {{::origTx.isCoinbase()}}, weight: {{::origTx.weight()}}\n" +
-    "            </span>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "\n" +
-    "                <!-- inputs -->\n" +
-    "                <div class=\"form-group\">\n" +
-    "                    <label class=\"col-sm-3 control-label\" for=\"raw\">Inputs:</label>\n" +
-    "                    <div class=\"col-sm-9 input-group\">\n" +
-    "                        <div class=\"well\" ng-repeat=\"input in ::tx.ins\">\n" +
-    "                            <div class=\"form-group\">\n" +
-    "                                <div class=\"input-group\">\n" +
-    "                                    <span class=\"input-group-addon\">Referencing TX ID:</span>\n" +
-    "                                    <input ng-readonly=\"true\" value=\"{{::vm.getTxId(input.hash)}}\" class=\"form-control\">\n" +
-    "                                </div>\n" +
-    "                                <div class=\"input-group\">\n" +
-    "                                    <span class=\"input-group-addon\">Referencing TX Output Index:</span>\n" +
-    "                                    <input ng-readonly=\"true\" value=\"{{::input.index}}\" class=\"form-control\">\n" +
-    "                                    <span class=\"input-group-addon\">Sequence Number:</span>\n" +
-    "                                    <input ng-readonly=\"true\" value=\"{{::input.sequence.toString(16)}}\" class=\"form-control\">\n" +
-    "                                </div>\n" +
-    "                                <div class=\"input-group\" ng-if=\"!origTx.isCoinbase()\">\n" +
-    "                                    <span class=\"input-group-addon\">Script:</span>\n" +
-    "                                    <input ng-readonly=\"true\" value=\"{{::input.script}}\" class=\"form-control\">\n" +
-    "                                </div>\n" +
-    "                                <div class=\"input-group\" ng-if=\"origTx.isCoinbase()\">\n" +
-    "                                    <span class=\"input-group-addon\">Data:</span>\n" +
-    "                                    <input ng-readonly=\"true\" value=\"{{::vm.getRawString(input.script)}}\" class=\"form-control\">\n" +
-    "                                </div>\n" +
-    "                                <div class=\"input-group\" ng-if=\"origTx.hasWitnesses()\">\n" +
-    "                                    <span class=\"input-group-addon\">Witness:</span>\n" +
-    "                                    <input ng-readonly=\"true\" value=\"{{::input.witness}}\" class=\"form-control\">\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "\n" +
-    "                <!-- outputs -->\n" +
-    "                <div class=\"form-group\">\n" +
-    "                    <label class=\"col-sm-3 control-label\" for=\"raw\">Outputs:</label>\n" +
-    "                    <div class=\"col-sm-9 input-group\">\n" +
-    "                        <div class=\"well\" ng-repeat=\"output in ::tx.outs\">\n" +
-    "                            <div class=\"form-group\">\n" +
-    "                                <div class=\"input-group\">\n" +
-    "                                    <span class=\"input-group-addon\">Value (Raw/Satoshis):</span>\n" +
-    "                                    <input ng-readonly=\"true\" value=\"{{::output.value}}\" class=\"form-control\">\n" +
-    "                                    <span class=\"input-group-addon\">Value (BTCs):</span>\n" +
-    "                                    <input ng-readonly=\"true\" value=\"{{::output.value / 100000000}}\" class=\"form-control\">\n" +
-    "                                </div>\n" +
-    "                                <div class=\"input-group\">\n" +
-    "                                    <span class=\"input-group-addon\">Script:</span>\n" +
-    "                                    <input ng-readonly=\"true\" value=\"{{::output.script}}\" class=\"form-control\">\n" +
-    "                                </div>\n" +
-    "                                <div class=\"input-group\" ng-if=\"::vm.isP2PKH(origTx.outs[$index].script)\">\n" +
-    "                                    <span class=\"input-group-addon\">Address:</span>\n" +
-    "                                    <input ng-readonly=\"true\"\n" +
-    "                                           value=\"{{::$root.hexPubKeyToBitcoinAddr(vm.getP2PKH(origTx.outs[$index].script))}}\"\n" +
-    "                                           class=\"form-control\">\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </form>\n" +
+    "  <div ng-repeat=\"tx in vm.decodedBlock.transactions\">\n" +
+    "    <h4 ng-init=\"origTx = vm.block.transactions[$index]\">TX {{$index}}</h4>\n" +
+    "    <div class=\"well\">\n" +
+    "      <form class=\"form-horizontal\">\n" +
+    "        <!-- hash -->\n" +
+    "        <div class=\"form-group\">\n" +
+    "          <label class=\"col-sm-3 control-label\" for=\"raw\">Calculated Hash:</label>\n" +
+    "          <div class=\"col-sm-9 input-group\">\n" +
+    "            <input ng-readonly=\"true\" value=\"{{::origTx.getHash().toString('hex')}}\" class=\"form-control\">\n" +
+    "          </div>\n" +
     "        </div>\n" +
+    "\n" +
+    "        <!-- ID -->\n" +
+    "        <div class=\"form-group\">\n" +
+    "          <label class=\"col-sm-3 control-label\" for=\"raw\">TX ID (reversed hash):</label>\n" +
+    "          <div class=\"col-sm-9 input-group\">\n" +
+    "            <input ng-readonly=\"true\" value=\"{{::origTx.getId().toString('hex')}}\" class=\"form-control\">\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- misc -->\n" +
+    "        <div class=\"form-group\">\n" +
+    "          <label class=\"col-sm-3 control-label\" for=\"raw\">Misc:</label>\n" +
+    "          <div class=\"col-sm-9 input-group\">\n" +
+    "            <span class=\"form-control\" ng-readonly=\"true\">\n" +
+    "              Version: {{::tx.version}}, Locktime: {{::tx.locktime}}, is coinbase TX: {{::origTx.isCoinbase()}}, weight:\n" +
+    "              {{::origTx.weight()}}\n" +
+    "            </span>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- inputs -->\n" +
+    "        <div class=\"form-group\">\n" +
+    "          <label class=\"col-sm-3 control-label\" for=\"raw\">Inputs:</label>\n" +
+    "          <div class=\"col-sm-9 input-group\">\n" +
+    "            <div class=\"well\" ng-repeat=\"input in ::tx.ins\">\n" +
+    "              <div class=\"form-group\">\n" +
+    "                <div class=\"input-group\">\n" +
+    "                  <span class=\"input-group-addon\">Referencing TX ID:</span>\n" +
+    "                  <input ng-readonly=\"true\" value=\"{{::vm.getTxId(input.hash)}}\" class=\"form-control\">\n" +
+    "                </div>\n" +
+    "                <div class=\"input-group\">\n" +
+    "                  <span class=\"input-group-addon\">Referencing TX Output Index:</span>\n" +
+    "                  <input ng-readonly=\"true\" value=\"{{::input.index}}\" class=\"form-control\">\n" +
+    "                  <span class=\"input-group-addon\">Sequence Number:</span>\n" +
+    "                  <input ng-readonly=\"true\" value=\"{{::input.sequence.toString(16)}}\" class=\"form-control\">\n" +
+    "                </div>\n" +
+    "                <div class=\"input-group\" ng-if=\"!origTx.isCoinbase()\">\n" +
+    "                  <span class=\"input-group-addon\">Script:</span>\n" +
+    "                  <input ng-readonly=\"true\" value=\"{{::input.script}}\" class=\"form-control\">\n" +
+    "                </div>\n" +
+    "                <div class=\"input-group\" ng-if=\"origTx.isCoinbase()\">\n" +
+    "                  <span class=\"input-group-addon\">Data:</span>\n" +
+    "                  <input ng-readonly=\"true\" value=\"{{::vm.getRawString(input.script)}}\" class=\"form-control\">\n" +
+    "                </div>\n" +
+    "                <div class=\"input-group\" ng-if=\"origTx.hasWitnesses()\">\n" +
+    "                  <span class=\"input-group-addon\">Witness:</span>\n" +
+    "                  <input ng-readonly=\"true\" value=\"{{::input.witness}}\" class=\"form-control\">\n" +
+    "                </div>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- outputs -->\n" +
+    "        <div class=\"form-group\">\n" +
+    "          <label class=\"col-sm-3 control-label\" for=\"raw\">Outputs:</label>\n" +
+    "          <div class=\"col-sm-9 input-group\">\n" +
+    "            <div class=\"well\" ng-repeat=\"output in ::tx.outs\">\n" +
+    "              <div class=\"form-group\">\n" +
+    "                <div class=\"input-group\">\n" +
+    "                  <span class=\"input-group-addon\">Value (Raw/Satoshis):</span>\n" +
+    "                  <input ng-readonly=\"true\" value=\"{{::output.value}}\" class=\"form-control\">\n" +
+    "                  <span class=\"input-group-addon\">Value (BTCs):</span>\n" +
+    "                  <input ng-readonly=\"true\" value=\"{{::output.value / 100000000}}\" class=\"form-control\">\n" +
+    "                </div>\n" +
+    "                <div class=\"input-group\">\n" +
+    "                  <span class=\"input-group-addon\">Script:</span>\n" +
+    "                  <input ng-readonly=\"true\" value=\"{{::output.script}}\" class=\"form-control\">\n" +
+    "                </div>\n" +
+    "                <div class=\"input-group\" ng-if=\"::vm.isP2PKH(origTx.outs[$index].script)\">\n" +
+    "                  <span class=\"input-group-addon\">Address:</span>\n" +
+    "                  <input ng-readonly=\"true\"\n" +
+    "                    value=\"{{::$root.hexPubKeyToBitcoinAddr(vm.getP2PKH(origTx.outs[$index].script))}}\"\n" +
+    "                    class=\"form-control\">\n" +
+    "                </div>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "      </form>\n" +
     "    </div>\n" +
+    "  </div>\n" +
     "</div>\n"
   );
 
@@ -2924,11 +2878,12 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "<h1>Cryptography Toolkit</h1>\n" +
     "\n" +
     "A web-based collection of cryptography tools for schemes/algorithms used in\n" +
-    "<a href=\"https://github.com/bitcoin/bitcoin\">Bitcoin</a> and <a href=\"https://github.com/lightningnetwork/lnd\">LND</a>.<br/><br/>\n" +
+    "<a href=\"https://github.com/litecoin-project/litecoin\">Litecoin</a> and <a\n" +
+    "  href=\"https://github.com/ltcsuite/lnd\">LNDltc</a>.<br /><br />\n" +
     "\n" +
-    "<strong>This toolkit has been built with educational purposes in mind!</strong><br/>\n" +
-    "It is meant to play around with different schemes and algorithms to understand how they work.<br/>\n" +
-    "However, you must be <strong>extremely careful</strong> when using real/live/mainnet data/keys/credentials!<br/>\n" +
+    "<strong>This toolkit has been built with educational purposes in mind!</strong><br />\n" +
+    "It is meant to play around with different schemes and algorithms to understand how they work.<br />\n" +
+    "However, you must be <strong>extremely careful</strong> when using real/live/mainnet data/keys/credentials!<br />\n" +
     "A web browser usually is not a safe environment to either create strong cryptographic keys and/or\n" +
     "paste sensitive information into. So consider yourself warned.\n" +
     "\n" +
@@ -2936,7 +2891,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "<ul>\n" +
     "  <li><a href=\"#!/ecc\">Elliptic Curve Cryptography / Key Pair page</a></li>\n" +
     "  <li><a href=\"#!/hd-wallet\">Hierarchical Deterministic Wallet page</a></li>\n" +
-    "  <li><a href=\"#!/bitcoin-block\">Bitcoin Block Parser page</a></li>\n" +
+    "  <li><a href=\"#!/bitcoin-block\">Litecoin Block Parser page</a></li>\n" +
     "  <li><a href=\"#!/shamir-secret-sharing\">Shamir's Secret Sharing Scheme page</a></li>\n" +
     "  <li><a href=\"#!/schnorr\">BIP Schnorr Signatures page</a></li>\n" +
     "  <li><a href=\"#!/mu-sig\">MuSig: Key Aggregation for Schnorr Signatures page</a></li>\n" +
@@ -2947,8 +2902,8 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "</ul>\n" +
     "\n" +
     "<p class=\"pull-right\">\n" +
-    "  by <a href=\"https://github.com/guggero\">Oliver Gugger</a><br>\n" +
-    "  BTC tip address: bc1qfgua5vhwm6myajak9p4crhwmwm2k6mczf789eh<br/>\n" +
+    "  Based on Cryptography Toolkit by <a href=\"https://github.com/guggero\">Oliver Gugger</a><br>\n" +
+    "  BTC tip address: bc1qfgua5vhwm6myajak9p4crhwmwm2k6mczf789eh<br />\n" +
     "</p>\n"
   );
 
@@ -3279,11 +3234,13 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "  </div>\n" +
     "  <div class=\"panel-collapse collapse\" ng-class=\"{in: vm.showExplanation}\">\n" +
     "    <div class=\"panel-body\">\n" +
-    "      Schnorr Signatures are a form of Digital Signature Algorithms (DSA) that produces short signatures even when combining multiple\n" +
-    "      public keys (when using for multisig).<br/><br/>\n" +
-    "      Currently there is a BIP that has no number assigned yet that introduces a specific signature scheme for Schnorr that produces\n" +
-    "      64-byte signatures over the elliptic curve <em>secp256k1</em>.<br/>\n" +
-    "      This demo page shows how this BIP could look like when implemented in Bitcoin.\n" +
+    "      Schnorr Signatures are a form of Digital Signature Algorithms (DSA) that produces short signatures even when\n" +
+    "      combining multiple\n" +
+    "      public keys (when using for multisig).<br /><br />\n" +
+    "      Currently there is a BIP that has no number assigned yet that introduces a specific signature scheme for Schnorr\n" +
+    "      that produces\n" +
+    "      64-byte signatures over the elliptic curve <em>secp256k1</em>.<br />\n" +
+    "      This demo page shows how this BIP could look like when implemented in Litecoin.\n" +
     "\n" +
     "      <h3>Sources, tools and other useful information:</h3>\n" +
     "      <ul>\n" +
@@ -3355,30 +3312,21 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <div class=\"form-group\">\n" +
     "      <label for=\"publicKey\" class=\"col-sm-3 control-label\">Public key:</label>\n" +
     "      <div class=\"col-sm-9 input-group\">\n" +
-    "        <input id=\"publicKey\"\n" +
-    "               ng-model=\"vm.publicKeyToVerify\"\n" +
-    "               ng-change=\"vm.verifySignature()\"\n" +
-    "               class=\"form-control\">\n" +
+    "        <input id=\"publicKey\" ng-model=\"vm.publicKeyToVerify\" ng-change=\"vm.verifySignature()\" class=\"form-control\">\n" +
     "      </div>\n" +
     "    </div>\n" +
     "\n" +
     "    <div class=\"form-group\">\n" +
     "      <label for=\"messageHash\" class=\"col-sm-3 control-label\">Message hash:</label>\n" +
     "      <div class=\"col-sm-9 input-group\">\n" +
-    "        <input id=\"messageHash\"\n" +
-    "               ng-model=\"vm.messageHashToVerify\"\n" +
-    "               ng-change=\"vm.verifySignature()\"\n" +
-    "               class=\"form-control\">\n" +
+    "        <input id=\"messageHash\" ng-model=\"vm.messageHashToVerify\" ng-change=\"vm.verifySignature()\" class=\"form-control\">\n" +
     "      </div>\n" +
     "    </div>\n" +
     "\n" +
     "    <div class=\"form-group\">\n" +
     "      <label for=\"signature\" class=\"col-sm-3 control-label\">Signature:</label>\n" +
     "      <div class=\"col-sm-9 no-left-padding\">\n" +
-    "        <input id=\"signature\"\n" +
-    "               ng-model=\"vm.signatureToVerify\"\n" +
-    "               ng-change=\"vm.verifySignature()\"\n" +
-    "               class=\"form-control\">\n" +
+    "        <input id=\"signature\" ng-model=\"vm.signatureToVerify\" ng-change=\"vm.verifySignature()\" class=\"form-control\">\n" +
     "      </div>\n" +
     "    </div>\n" +
     "  </form>\n" +
@@ -3737,7 +3685,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('pages/wallet-import/wallet-import.html',
-    "<h1>Import HD wallet into Bitcoin Core</h1>\n" +
+    "<h1>Import HD wallet into Litecoin Core</h1>\n" +
     "\n" +
     "<div class=\"panel panel-default\">\n" +
     "  <div class=\"panel-heading\">\n" +
@@ -3747,14 +3695,16 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "  </div>\n" +
     "  <div class=\"panel-collapse collapse\" ng-class=\"{in: vm.showExplanation}\">\n" +
     "    <div class=\"panel-body\">\n" +
-    "      Currently, there is no easy way to import addresses from a HD seed that has been created by another software into Bitcoin Core.<br/>\n" +
+    "      Currently, there is no easy way to import addresses from a HD seed that has been created by another software into\n" +
+    "      Litecoin Core.<br />\n" +
     "      This tool helps you do that.\n" +
     "    </div>\n" +
     "  </div>\n" +
     "</div>\n" +
     "\n" +
     "<div class=\"alert alert-warning\">\n" +
-    "  <strong>Warning</strong>: This is meant as a playground only! You should only use testnet keys and never paste real private keys\n" +
+    "  <strong>Warning</strong>: This is meant as a playground only! You should only use testnet keys and never paste real\n" +
+    "  private keys\n" +
     "  into any web page!\n" +
     "</div>\n" +
     "\n" +
@@ -3766,10 +3716,8 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <div class=\"form-group\">\n" +
     "      <label class=\"col-sm-3 control-label\">Import mode:</label>\n" +
     "      <div class=\"col-sm-9 input-group\">\n" +
-    "        <select ng-model=\"vm.mode\"\n" +
-    "                ng-options=\"mode.label for mode in vm.modes\"\n" +
-    "                ng-change=\"vm.fromSeed()\"\n" +
-    "                class=\"form-control\">\n" +
+    "        <select ng-model=\"vm.mode\" ng-options=\"mode.label for mode in vm.modes\" ng-change=\"vm.fromSeed()\"\n" +
+    "          class=\"form-control\">\n" +
     "        </select>\n" +
     "      </div>\n" +
     "    </div>\n" +
@@ -3787,20 +3735,16 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <div class=\"form-group\" ng-if=\"vm.mode.id === 'mnemonic'\">\n" +
     "      <label class=\"col-sm-3 control-label\">Passphrase:</label>\n" +
     "      <div class=\"col-sm-9 input-group\">\n" +
-    "        <input class=\"form-control\"\n" +
-    "               ng-model=\"vm.passphrase\"\n" +
-    "               ng-change=\"vm.fromMnemonic()\"\n" +
-    "               type=\"{{vm.asPassword ? 'password' : 'text'}}\">\n" +
+    "        <input class=\"form-control\" ng-model=\"vm.passphrase\" ng-change=\"vm.fromMnemonic()\"\n" +
+    "          type=\"{{vm.asPassword ? 'password' : 'text'}}\">\n" +
     "        <span class=\"input-group-btn\">\n" +
-    "            <button class=\"btn btn-primary\" ng-click=\"vm.asPassword = !vm.asPassword\">\n" +
-    "                {{vm.asPassword ? 'Show' : 'Hide'}} passphrase\n" +
-    "            </button>\n" +
+    "          <button class=\"btn btn-primary\" ng-click=\"vm.asPassword = !vm.asPassword\">\n" +
+    "            {{vm.asPassword ? 'Show' : 'Hide'}} passphrase\n" +
+    "          </button>\n" +
     "        </span>\n" +
     "        <div class=\"input-group-addon\">Method</div>\n" +
-    "        <select ng-model=\"vm.strenghtening\"\n" +
-    "                ng-change=\"vm.fromMnemonic()\"\n" +
-    "                ng-options=\"s.label for s in vm.strenghteningMethods\"\n" +
-    "                class=\"form-control\">\n" +
+    "        <select ng-model=\"vm.strenghtening\" ng-change=\"vm.fromMnemonic()\"\n" +
+    "          ng-options=\"s.label for s in vm.strenghteningMethods\" class=\"form-control\">\n" +
     "        </select>\n" +
     "      </div>\n" +
     "    </div>\n" +
@@ -3809,10 +3753,8 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <div class=\"form-group\">\n" +
     "      <label class=\"col-sm-3 control-label\">Parameters to derive keys:</label>\n" +
     "      <div class=\"col-sm-9 input-group\">\n" +
-    "        <select ng-model=\"vm.scheme\"\n" +
-    "                ng-options=\"scheme.label for scheme in vm.schemes\"\n" +
-    "                ng-change=\"vm.fromSeed()\"\n" +
-    "                class=\"form-control\">\n" +
+    "        <select ng-model=\"vm.scheme\" ng-options=\"scheme.label for scheme in vm.schemes\" ng-change=\"vm.fromSeed()\"\n" +
+    "          class=\"form-control\">\n" +
     "        </select>\n" +
     "      </div>\n" +
     "    </div>\n" +
@@ -3821,14 +3763,12 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <div class=\"form-group\">\n" +
     "      <label class=\"col-sm-3 control-label\">HD master root key:</label>\n" +
     "      <div class=\"col-sm-9 input-group as-block\">\n" +
-    "        <input class=\"form-control\"\n" +
-    "               style=\"width: 80%\"\n" +
-    "               ng-model=\"vm.nodeBase58\"\n" +
-    "               ng-readonly=\"vm.mode.id === 'mnemonic'\"\n" +
-    "               ng-change=\"vm.fromBase58()\"\n" +
-    "               ng-class=\"{'well-error': vm.mode.id === 'hdroot' && vm.error}\">\n" +
-    "        <span class=\"input-group-addon\" ng-if=\"vm.mode.id === 'hdroot' && !vm.error\" style=\"width: 20%\">&lt;-- paste here to import.</span>\n" +
-    "        <span class=\"input-group-addon well-error\" ng-if=\"vm.mode.id === 'hdroot' && vm.error\" style=\"width: 20%\"> {{vm.error}}</span>\n" +
+    "        <input class=\"form-control\" style=\"width: 80%\" ng-model=\"vm.nodeBase58\" ng-readonly=\"vm.mode.id === 'mnemonic'\"\n" +
+    "          ng-change=\"vm.fromBase58()\" ng-class=\"{'well-error': vm.mode.id === 'hdroot' && vm.error}\">\n" +
+    "        <span class=\"input-group-addon\" ng-if=\"vm.mode.id === 'hdroot' && !vm.error\" style=\"width: 20%\">&lt;-- paste\n" +
+    "          here to import.</span>\n" +
+    "        <span class=\"input-group-addon well-error\" ng-if=\"vm.mode.id === 'hdroot' && vm.error\" style=\"width: 20%\">\n" +
+    "          {{vm.error}}</span>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "\n" +
@@ -3869,8 +3809,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "      </div>\n" +
     "    </div>\n" +
     "  </form>\n" +
-    "</div>\n" +
-    "\n"
+    "</div>\n"
   );
 
 }]);
