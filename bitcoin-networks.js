@@ -1,6 +1,6 @@
 window.allNetworks = [
   {
-    label: "LTC (Litecoin Regtest, legacy, BIP32/44)",
+    label: "rLTC, legacy, BIP32/44",
     config: {
       messagePrefix: "\u0019Litecoin Signed Message:\n",
       bech32: "rltc",
@@ -12,7 +12,7 @@ window.allNetworks = [
     },
   },
   {
-    label: "LTC (Litecoin Regtest, SegWit, BIP49)",
+    label: "rLTC, SegWit, BIP49",
     config: {
       messagePrefix: "\u0019Litecoin Signed Message:\n",
       bech32: "rltc",
@@ -24,7 +24,7 @@ window.allNetworks = [
     },
   },
   {
-    label: "LTC (Litecoin Regtest, Native SegWit, BIP84)",
+    label: "rLTC, Native SegWit, BIP84",
     config: {
       messagePrefix: "\u0019Litecoin Signed Message:\n",
       bech32: "rltc",
@@ -37,7 +37,7 @@ window.allNetworks = [
   },
 
   {
-    label: "LTC (Litecoin Testnet, legacy, BIP32/44)",
+    label: "Testnet, legacy, BIP32/44",
     config: {
       messagePrefix: "\u0019Litecoin Signed Message:\n",
       bech32: "tltc",
@@ -49,7 +49,7 @@ window.allNetworks = [
     },
   },
   {
-    label: "LTC (Litecoin Testnet, SegWit, BIP49)",
+    label: "Testnet, SegWit, BIP49",
     config: {
       messagePrefix: "\u0019Litecoin Signed Message:\n",
       bech32: "tltc",
@@ -61,7 +61,7 @@ window.allNetworks = [
     },
   },
   {
-    label: "LTC (Litecoin Testnet, Native SegWit, BIP84)",
+    label: "Testnet, Native SegWit, BIP84",
     config: {
       messagePrefix: "\u0019Litecoin Signed Message:\n",
       bech32: "tltc",
@@ -73,7 +73,7 @@ window.allNetworks = [
     },
   },
   {
-    label: "LTC (Litecoin, legacy, BIP32/44) - SLIP44 NON-STANDARD",
+    label: "Litecoin, legacy, BIP32/44 - SLIP44",
     config: {
       messagePrefix: "\u0019Litecoin Signed Message:\n",
       bech32: "ltc",
@@ -85,7 +85,7 @@ window.allNetworks = [
     },
   },
   {
-    label: "LTC (Litecoin, SegWit, BIP49) - SLIP44 NON-STANDARD",
+    label: "Litecoin, SegWit, BIP49 - SLIP44",
     config: {
       messagePrefix: "\u0019Litecoin Signed Message:\n",
       bech32: "ltc",
@@ -97,7 +97,7 @@ window.allNetworks = [
     },
   },
   {
-    label: "LTC (Litecoin, Native SegWit, BIP84) - SLIP44 NON-STANDARD",
+    label: "Litecoin, Native SegWit, BIP84 - SLIP44",
     config: {
       messagePrefix: "\u0019Litecoin Signed Message:\n",
       bech32: "ltc",
@@ -109,7 +109,7 @@ window.allNetworks = [
     },
   },
   {
-    label: "LTC (Litecoin, legacy, BIP32/44)",
+    label: "Litecoin, legacy, BIP32/44",
     config: {
       messagePrefix: "\u0019Litecoin Signed Message:\n",
       bech32: "ltc",
@@ -121,7 +121,7 @@ window.allNetworks = [
     },
   },
   {
-    label: "LTC (Litecoin, SegWit, BIP49)",
+    label: "Litecoin, SegWit, BIP49",
     config: {
       messagePrefix: "\u0019Litecoin Signed Message:\n",
       bech32: "ltc",
@@ -133,7 +133,7 @@ window.allNetworks = [
     },
   },
   {
-    label: "LTC (Litecoin, Native SegWit, BIP84)",
+    label: "Litecoin, Native SegWit, BIP84",
     config: {
       messagePrefix: "\u0019Litecoin Signed Message:\n",
       bech32: "ltc",
